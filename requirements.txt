@@ -2,4 +2,4 @@ aiogram
 python-dotenv
 openai
 textblob
-+uvicorn[standard]
+uvicorn[standard]
