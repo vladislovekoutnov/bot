@@ -1,0 +1,23 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/telegram-bot', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/telegram-bot']
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'telegram-bot'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/telegram-bot'
+      - '--platform'
+      - 'managed'
+      - '--region'
+      - 'us-central1'
+      - '--allow-unauthenticated'
+      - '--set-env-vars'
+      - 'TELEGRAM_TOKEN=$TELEGRAM_TOKEN,OPENAI_API_KEY=$OPENAI_API_KEY,DB_PATH=/tmp/memory.db'
+
+images:
+  - 'gcr.io/$PROJECT_ID/telegram-bot'
