@@ -1,16 +1,16 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'projects/axial-glow-466817-k7/locations/global/triggers/e39464f3-c3c1-41bb-a2cd-a3884d88bcdc', '.']
+    args: ['build', '-t', 'github.com/vladislovekoutnov/bot', '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'projects/axial-glow-466817-k7/locations/global/triggers/e39464f3-c3c1-41bb-a2cd-a3884d88bcdc']
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    args: ['push', 'github.com/vladislovekoutnov/bot']
+  - name: 'github.com/vladislovekoutnov/bot'
     entrypoint: gcloud
     args:
       - 'run'
       - 'deploy'
       - 'telegram-bot'
       - '--image'
-      - 'gcr.io/$PROJECT_ID/telegram-bot'
+      - 'projects/axial-glow-466817-k7/locations/global/triggers/e39464f3-c3c1-41bb-a2cd-a3884d88bcdc'
       - '--platform'
       - 'managed'
       - '--region'
