@@ -1,9 +1,9 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'github.com/vladislovekoutnov/bot', '.']
+    args: ['build', '-t', 'vladislove-524494679167.asia-southeast2.run.app', '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'github.com/vladislovekoutnov/bot']
-  - name: 'github.com/vladislovekoutnov/bot'
+    args: ['push', 'vladislove-524494679167.asia-southeast2.run.app']
+  - name: 'vladislove-524494679167.asia-southeast2.run.app'
     entrypoint: gcloud
     args:
       - 'run'
